@@ -1,9 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{go}"],
+  content: ["./**/*.go"], // Change the content pattern to include all subdirectories
   theme: {
     extend: {},
   },
   plugins: [],
 }
-
