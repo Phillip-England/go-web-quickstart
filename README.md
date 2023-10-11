@@ -15,3 +15,10 @@ Then, you can run this command to watch for changes in tailwind classnames durin
 npx tailwindcss -i ./public/input.css -o ./public/output.css --watch
 ```
 
+## Starting the Server
+To start the web server, run the following command from the root of your project.
+```bash
+go run main.go
+```
+
+Then, go visit http://localhost:8080/ to see the results. Good luck.
