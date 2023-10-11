@@ -28,9 +28,9 @@ func (b *PageBuilder) GetBasePageAsBytes() []byte {
             <link rel="stylesheet" href="/public/output.css"></link>
             <script src=%s crossorigin="anonymous"></script>
             <title>%s</title>
+            </head>
+            <body>
             %s
-        </head>
-        <body>
             <script src="/public/bundle.js"></script>
         </body>
         </html>

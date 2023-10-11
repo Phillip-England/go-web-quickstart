@@ -21,6 +21,10 @@ func main() {
         fmt.Println("Error loading .env file")
     }
 
+    // Create a file server for the ./public directory and server static files from /public
+    fs := http.FileServer(http.Dir("./public"))
+    http.Handle("/public/", http.StripPrefix("/public/", fs))
+
     // homepage
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         w.Header().Set("Content-Type", "text/html")
