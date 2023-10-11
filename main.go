@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"web-quickstart/pkg/PageBuilder"
+	components "web-quickstart/pkg/components/helloWorld"
+	"web-quickstart/pkg/pageBuilder"
 
 	"github.com/joho/godotenv"
 )
@@ -23,8 +24,8 @@ func main() {
     // homepage
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         w.Header().Set("Content-Type", "text/html")
-        b := PageBuilder.New("Home Page")
-        b.Add(`<p>Yooo</p>`)
+        b := pageBuilder.New("Home Page")
+        b.Add(components.HelloWorld())
         w.Write(b.GetBasePageAsBytes())
     })
 

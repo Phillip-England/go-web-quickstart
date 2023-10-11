@@ -1,4 +1,4 @@
-package PageBuilder
+package pageBuilder
 
 import (
 	"fmt"
