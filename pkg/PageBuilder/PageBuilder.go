@@ -25,12 +25,13 @@ func (b *PageBuilder) GetBasePageAsBytes() []byte {
         <html>
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
-            <link rel="stylesheet" href="/public/css/output.css"></link>
+            <link rel="stylesheet" href="/public/output.css"></link>
             <script src=%s crossorigin="anonymous"></script>
             <title>%s</title>
             %s
         </head>
         <body>
+            <script src="/public/bundle.js"></script>
         </body>
         </html>
     `, []byte(b.fontawesomeKey), []byte(b.title), []byte(b.componentString)))
