@@ -1,4 +1,4 @@
-module team-scorecard
+module web-quickstart
 
 go 1.20
 

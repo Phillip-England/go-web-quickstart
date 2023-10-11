@@ -1,5 +1,9 @@
 
-
+## Cloning the Repository
+Run this command to clone the repository. Make sure to replace <project-dir> with the actual path to the directory of your project.
+```bash
+git clone https://github.com/phillip-england/go-web-quickstart <project-dir>
+```
 
 ## Installing and Running Tailwind
 Run the following command to install tailwind via npm:

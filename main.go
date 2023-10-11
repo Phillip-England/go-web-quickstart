@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"team-scorecard/pkg/PageBuilder"
+	"web-quickstart/pkg/PageBuilder"
 
 	"github.com/joho/godotenv"
 )
