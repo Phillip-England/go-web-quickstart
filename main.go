@@ -2,41 +2,50 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"web-quickstart/pkg/comp"
-	"web-quickstart/pkg/pageBuilder"
+	"log"
+	"web-quickstart/pkg/core"
+	"web-quickstart/pkg/routes/actionRoutes"
+	"web-quickstart/pkg/routes/componentRoutes"
+	"web-quickstart/pkg/routes/pageRoutes"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
-//===============================================================
-// MAIN
-//===============================================================
-
 func main() {
 
-    // loading .env
+    // dotenv
     err := godotenv.Load(".env")
     if err != nil {
         fmt.Println("Error loading .env file")
     }
 
-    // Create a file server for the ./public directory and server static files from /public
-    fs := http.FileServer(http.Dir("./public"))
-    http.Handle("/public/", http.StripPrefix("/public/", fs))
+    // server config
+    r := gin.Default()
+    r.Static("/static", "./static")
 
-    // homepage
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Content-Type", "text/html")
-        b := pageBuilder.New("Home Page")
-        b.Add(comp.TestButton())
-        w.Write(b.GetBasePageAsBytes())
-    })
-
-    // serving
-    if err := http.ListenAndServe(":8080", nil); err != nil {
-        panic(err)
+    // database access
+    db, err := core.GetDatabase()
+    if err != nil {
+        fmt.Println(err)
+        log.Panic("Database failed to connect")
     }
+    fmt.Println(db)
+
+    // routes
+    pageRoutes.PageLogin(r)
+    pageRoutes.PageTeamCem(r)
+    pageRoutes.PageTeamFinance(r)
+    pageRoutes.PageTeamSales(r)
+    pageRoutes.PageTeamTalent(r)
+    actionRoutes.ActionLoginUser(r)
+    componentRoutes.TalentScoresWidget(r)
+    componentRoutes.CutomerServiceScoreWidget(r)
+    componentRoutes.SalesResultsWidget(r)
+    componentRoutes.FinancialResultsWidget(r)
+
+    // running
+    r.Run()
 
 }
 
